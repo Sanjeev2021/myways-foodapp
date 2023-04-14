@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./navbar";
+import './homepage.css'
 
 function FoodTable() {
   const [foodData, setFoodData] = useState([]);
@@ -10,27 +11,26 @@ function FoodTable() {
     setFoodData(allFoodData);
   }, []);
 
+  
+
   return (
     <div>
       <Navbar />
-      <table>
-        <thead>
-          <tr>
-            <th>Food Name</th>
-            <th>Food Type</th>
-            <th>Max Delivery Time</th>
-          </tr>
-        </thead>
-        <tbody>
-          {foodData.map((food) => (
-            <tr key={food.name}>
-              <td>{food.foodName}</td>
-              <td>{food.foodType}</td>
-              <td>{food.maxDeliveryTime}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="wrapper">
+        <div class="cards">
+          {foodData.map((data, index) => {
+            return (
+              <div class=" card [ is-collapsed ] " key={index}>
+                <div class="card__inner [ js-expander ]">
+                  <div>Name: {data.foodName}</div>
+                  <div>Type: {data.foodType}</div>
+                  <div>Delivery Time: {data.maxDeliveryTime}</div>
+                </div>
+              </div>
+            );
+          })};
+        </div>
+      </div>
     </div>
   );
 }

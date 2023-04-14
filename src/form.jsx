@@ -14,58 +14,106 @@ export default function FormPage() {
     const allFoodData = storedFoodData ? JSON.parse(storedFoodData) : [];
     allFoodData.push(newFoodData);
     localStorage.setItem("allFoodData", JSON.stringify(allFoodData));
-    alert("Submitted")
+    alert("Submitted");
+  };
+
+  const formStyle = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "400px",
+    margin: "0 auto",
+    padding: "32px",
+    backgroundColor: "#f5f5f5",
+    borderRadius: "8px",
+    boxShadow: "0 2px 2px rgba(0, 0, 0, 0.1)",
+  };
+
+  const inputStyle = {
+    width: "100%",
+    padding: "8px",
+    marginBottom: "16px",
+    border: "none",
+    borderRadius: "4px",
+    boxShadow: "0 2px 2px rgba(0, 0, 0, 0.1)",
+    boxSizing: "border-box",
+  };
+
+  const labelStyle = {
+    marginBottom: "8px",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+  };
+
+  const buttonStyle = {
+    backgroundColor: "blue",
+    color: "white",
+    border: "none",
+    borderRadius: "4px",
+    padding: "8px",
+    cursor: "pointer",
+  };
+
+  const divStyle = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   };
 
   return (
     <div>
       <Navbar />
-      <div id="form-main">
-        <div id="form-div">
-          <form class="form" id="form1" onSubmit={handleSubmit}>
-            <p class="name">
-              <input
-                name="Food-Name"
-                type="text"
-                class="feedback-input"
-                placeholder="Food Name"
-                id="foodName"
-                value={foodName}
-                onChange={(e) => setFoodName(e.target.value)}
-              />
-            </p>
+      <div style={divStyle}>
+        <form style={formStyle} onSubmit={handleSubmit}>
+          <label htmlFor="foodName" style={labelStyle}>
+            Food Name
+          </label>
+          <input
+            type="text"
+            id="foodName"
+            name="foodName"
+            value={foodName}
+            onChange={(e) => setFoodName(e.target.value)}
+            placeholder="Enter food name"
+            style={inputStyle}
+          />
 
-            <p class="email">
-              <select
-                id="foodType"
-                value={foodType}
-                onChange={(e) => setFoodType(e.target.value)}
-              >
-                <option value="Delicious Food">Delicious Food</option>
-                <option value="Nutritious Food">Nutritious Food</option>
-                <option value="Fast Food">Fast Food</option>
-                <option value="Beverages">Beverages</option>
-                <option value="Desserts">Desserts</option>
-              </select>
-            </p>
+          <label htmlFor="foodType" style={labelStyle}>
+            Food Type
+          </label>
+          <select
+            id="foodType"
+            name="foodType"
+            value={foodType}
+            onChange={(e) => setFoodType(e.target.value)}
+            style={inputStyle}
+          >
+            <option value="">Select food type</option>
+            <option value="Delicious Food">Delicious Food</option>
+            <option value="Nutritious Food">Nutritious Food</option>
+            <option value="Fast Food">Fast Food</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Desserts">Desserts</option>
+          </select>
 
-            <p class="text">
-              <input
-                id="maxDeliveryTime"
-                type="number"
-                min="0"
-                placeholder="max delivery time"
-                value={maxDeliveryTime}
-                onChange={(e) => setMaxDeliveryTime(e.target.value)}
-              />
-            </p>
+          <label htmlFor="maxDeliveryTime" style={labelStyle}>
+            Max Delivery Time (in minutes)
+          </label>
+          <input
+            type="number"
+            id="maxDeliveryTime"
+            name="maxDeliveryTime"
+            value={maxDeliveryTime}
+            onChange={(e) => setMaxDeliveryTime(e.target.value)}
+            placeholder="Enter max delivery time"
+            style={inputStyle}
+          />
 
-            <div class="submit">
-              <input type="submit" value="SEND" id="button-blue" />
-              <div class="ease"></div>
-            </div>
-          </form>
-        </div>
+          <button type="submit" style={buttonStyle}>
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   );
